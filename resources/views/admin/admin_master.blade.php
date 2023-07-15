@@ -62,8 +62,6 @@
         <!-- END layout-wrapper -->
 
         <!-- Right Sidebar -->
-
-        {{-- @include('admin.body.right_sidebar') --}}
         
         <!-- /Right-bar -->
 
