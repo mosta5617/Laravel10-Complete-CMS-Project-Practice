@@ -17,14 +17,20 @@ class HomeSliderController extends Controller
     public function UpdateSlider(Request $request){
 
         $slide_id = $request->id;
+        $old_img = $request->old_image;
 
         if ($request->file('home_slide')) {
             $image = $request->file('home_slide');
+
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
 
             Image::make($image)->resize(636,852)->save('upload/home_slide/'.$name_gen);
             $save_url = 'upload/home_slide/'.$name_gen;
 
+             if (file_exists($old_img)) {
+                 unlink($old_img);
+            }
+            
             HomeSlide::findOrFail($slide_id)->update([
                 'title' => $request->title,
                 'short_title' => $request->short_title,

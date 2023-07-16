@@ -16,6 +16,7 @@
             <form method="post" action="{{ route('update.slider') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{ $homeslide->id }}">
+                <input type="hidden" name="old_image" value="{{ $homeslide->home_slide }}">
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
