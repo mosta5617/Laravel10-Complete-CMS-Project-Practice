@@ -16,7 +16,7 @@
                         <small class="text-muted">Joined: {{ $adminData->created_at }}</small>
                     </p>
                     <hr>
-                    <a href="{{ route('edit.profile') }}" class="btn btn-info btn-rounded waves-effect waves-light">Edit Profile</a>
+                    <center><a href="{{ route('edit.profile') }}" class="btn btn-info btn-rounded waves-effect waves-light">Edit Profile</a></center>
                  </div>
             </div>
         </div>
