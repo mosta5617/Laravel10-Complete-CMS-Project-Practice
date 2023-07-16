@@ -15,12 +15,15 @@
                 </li>
 
                 <li>
-                    <a href="calendar.html" class=" waves-effect">
-                        <i class="ri-calendar-2-line"></i>
-                        <span>Calendar</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Home Slider Setup</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('home.slide') }}">Home Slide</a></li>
+                    </ul>
                 </li>
-    
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-mail-send-line"></i>
@@ -31,7 +34,6 @@
                         <li><a href="email-read.html">Read Email</a></li>
                     </ul>
                 </li>
-
                 <li class="menu-title">Pages</li>
 
                 <li>
