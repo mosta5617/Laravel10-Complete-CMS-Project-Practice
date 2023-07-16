@@ -9,7 +9,7 @@ $adminData = App\Models\User::find($id);
             <!-- LOGO -->
             <div class="navbar-brand-box">
 
-                <a href="index.html" class="logo logo-light">
+                <a href="{{ route('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('logo/logo.png') }}" alt="logo-sm-light" height="50">
                     </span>

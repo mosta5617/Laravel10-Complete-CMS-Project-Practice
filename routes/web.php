@@ -30,12 +30,13 @@ Route::middleware('auth')->group(function () {
 });
 
 // ********* Admin Controller************ //
-Route::controller(AdminController::class)->group(function(){
-    Route::get('/admin/logout', 'Destroy')->name('admin.logout');
-    Route::get('/admin/profile', 'Profile')->name('admin.profile');
-    Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-    Route::post('/store/profile', 'StoreProfile')->name('store.profile');
-
+Route::middleware('auth')->group(function () {
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/admin/logout', 'Destroy')->name('admin.logout');
+        Route::get('/admin/profile', 'Profile')->name('admin.profile');
+        Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+        Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+    });
 });
 
 
