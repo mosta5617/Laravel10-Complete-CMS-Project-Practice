@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/profile', 'Profile')->name('admin.profile');
         Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
         Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+        Route::get('/change/password', 'ChangePassword')->name('change.password');
+        Route::post('/update/password', 'UpdatePassword')->name('update.password');
     });
 });
 
