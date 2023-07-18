@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function Index(){
+     return view('frontend.index');
+    }
+
     public function Destroy(Request $request)
     {
         Auth::guard('web')->logout();

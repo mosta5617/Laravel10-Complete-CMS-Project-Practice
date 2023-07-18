@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('admin.index');
@@ -32,8 +32,10 @@ Route::middleware('auth')->group(function () {
 });
 
 // ********* Admin Controller************ //
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
     Route::controller(AdminController::class)->group(function(){
+        Route::get('/', 'Index')->name('index');
+
         Route::get('/admin/logout', 'Destroy')->name('admin.logout');
         Route::get('/admin/profile', 'Profile')->name('admin.profile');
         Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
@@ -62,7 +64,7 @@ Route::middleware('auth')->group(function () {
     });
 
 
-});
+// });
 
     
 
