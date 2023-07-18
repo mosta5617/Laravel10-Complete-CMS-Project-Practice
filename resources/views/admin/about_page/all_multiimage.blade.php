@@ -31,17 +31,25 @@
                         <tr>
                             <th>Sl</th>
                             <th>About Multi Image</th>
+                            <th>Image Name</th>
                             <th>Action</th>
 
                         </thead>
 
 
                         <tbody>
-                        	@php($i = 1)
-                        	@foreach($allMultiImage as $item)
+                        	
+                        	@foreach($allMultiImage as $key =>$item)
+
+                             @php       
+                                 $segments = explode('/', $item->multi_image);
+                                 $file = $segments[2];  
+                             @endphp  
+                                
                         <tr>
-                            <td> {{ $i++}} </td>
+                            <td> {{ $key+1}} </td>
                             <td> <img src="{{ asset($item->multi_image) }}" style="width: 60px; height: 50px;"> </td>
+                            <td>{{ $file }}</td>
 
                             <td>
    <a href="" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>
