@@ -16,10 +16,12 @@ class BlogController extends Controller
         $blogs = Blog::latest()->get();
         return view('admin.blogs.blogs_all',compact('blogs'));
     } // End Method
+
     public function AddBlog(){
         $categories = BlogCategory::orderBy('blog_category','ASC')->get();
         return view('admin.blogs.blogs_add',compact('categories'));
     }// End Method
+
     public function StoreBlog(Request $request){
 
         $image = $request->file('blog_image');
@@ -45,4 +47,83 @@ class BlogController extends Controller
        return redirect()->route('all.blog')->with($notification);
 
    }// End Method
+
+   public function EditBlog($id){
+
+    $blogs = Blog::findOrFail($id);
+    $categories = BlogCategory::orderBy('blog_category','ASC')->get();
+    return view('admin.blogs.blogs_edit',compact('blogs','categories'));
+
+    } // End Method
+
+    public function UpdateBlog(Request $request){
+
+        $blog_id = $request->id;
+        $old_img = $request->old_image;
+
+
+       if ($request->file('blog_image')) {
+           $image = $request->file('blog_image');
+           $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
+
+            Image::make($image)->resize(430,327)->save('upload/blog_image/'.$name_gen);
+           $save_url = 'upload/blog_image/'.$name_gen;
+           
+           if (file_exists($old_img)) {
+            unlink($old_img);
+       }
+
+           Blog::findOrFail($blog_id)->update([
+               'blog_category_id' => $request->blog_category_id,
+               'blog_title' => $request->blog_title,
+               'blog_tags' => $request->blog_tags,
+               'blog_description' => $request->blog_description,
+               'blog_image' => $save_url,
+
+           ]); 
+           $notification = array(
+           'message' => 'Blog Updated with Image Successfully', 
+           'alert-type' => 'success'
+       );
+
+       return redirect()->route('all.blog')->with($notification);
+
+       } else{
+
+           Blog::findOrFail($blog_id)->update([
+               'blog_category_id' => $request->blog_category_id,
+               'blog_title' => $request->blog_title,
+               'blog_tags' => $request->blog_tags,
+               'blog_description' => $request->blog_description, 
+
+           ]); 
+
+           $notification = array(
+           'message' => 'Blog Updated without Image Successfully', 
+           'alert-type' => 'success'
+       );
+
+      return redirect()->route('all.blog')->with($notification);
+
+       } // end Else
+
+   } // End Method
+
+   public function DeleteBlog($id){
+
+    $blogs = Blog::findOrFail($id);
+    $img = $blogs->blog_image;
+    unlink($img);
+
+    Blog::findOrFail($id)->delete();
+
+     $notification = array(
+        'message' => 'Blog Deleted Successfully', 
+        'alert-type' => 'success'
+    );
+
+    return redirect()->back()->with($notification);       
+
+ }// End Method 
+
 }
