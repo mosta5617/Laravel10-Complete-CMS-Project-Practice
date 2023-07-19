@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +63,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
         Route::get('/delete/multi/image/{id}', 'DeleteMultiImage')->name('delete.multi.image'); 
     });
+
+     // Blog Category All Routes 
+    Route::controller(BlogCategoryController::class)->group(function () {
+    Route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
+
+
+});
 
 
 // });
