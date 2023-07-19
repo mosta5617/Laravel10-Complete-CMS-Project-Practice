@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class BlogCategoryController extends Controller
 {
@@ -33,7 +36,9 @@ class BlogCategoryController extends Controller
 
 
             BlogCategory::insert([
-                'blog_category' => $request->blog_category,               
+                'blog_category' => $request->blog_category, 
+                'created_at' => Carbon::now(), 
+                             
 
             ]); 
 
@@ -82,6 +87,7 @@ class BlogCategoryController extends Controller
         return redirect()->back()->with($notification);       
 
     } // End Method
+  
 
 
 
